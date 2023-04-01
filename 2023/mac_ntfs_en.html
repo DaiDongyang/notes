@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installing ntfs-3g with MacPorts and Mounting NTFS External Hard Drive on macOS</title>
+</head>
+<body>
+    <h1>Installing ntfs-3g with MacPorts and Mounting NTFS External Hard Drive on macOS</h1>
+    <h2>Installing ntfs-3g:</h2>
+    <ol>
+        <li>Install Xcode: Download and install Xcode from the Mac App Store (if not already installed). Xcode is a suite of development tools provided by Apple, including compilers and development utilities.</li>
+        <li>Install Xcode Command Line Tools: Enter the following command in Terminal to install Xcode Command Line Tools:
+            <pre><code>xcode-select --install</code></pre>
+        </li>
+        <li>Install MacPorts: Visit the MacPorts official website (https://www.macports.org/install.php) and download and install the MacPorts installer corresponding to your macOS version.</li>
+        <li>Update MacPorts: Enter the following command in Terminal to update MacPorts and its available software list:
+            <pre><code>sudo port selfupdate</code></pre>
+        </li>
+        <li>Install ntfs-3g: Enter the following command in Terminal to install ntfs-3g using MacPorts:
+            <pre><code>sudo port install ntfs-3g</code></pre>
+        </li>
+    </ol>
+
+    <h2>Mounting NTFS External Hard Drive:</h2>
+    <ol>
+        <li>Connect the NTFS-formatted external hard drive to your Mac.</li>
+        <li>Open Terminal and enter the following command to find the device name and mount point of the connected NTFS volume:
+            <pre><code>diskutil list</code></pre>
+            Locate the device (e.g., <code>/dev/disk2s1</code>) and mount point (e.g., <code>/Volumes/MyNTFSVolume</code>) of your NTFS volume in the output.
+        </li>
+        <li>Unmount the NTFS volume. Replace <code>&lt;YOUR_NTFS_DEVICE&gt;</code> with the actual device name, and enter the following command in Terminal:
+            <pre><code>sudo diskutil unmount /dev/&lt;YOUR_NTFS_DEVICE&gt;</code></pre>
+            For example, if your NTFS device name is <code>/dev/disk2s1</code>, enter <code>sudo diskutil unmount /dev/disk2s1</code>.
+        </li>
+        <li>Remount the NTFS volume using ntfs-3g. Replace <code>&lt;YOUR_NTFS_DEVICE&gt;</code> with the actual device name and <code>&lt;YOUR_NTFS_MOUNT_POINT&gt;</code> with the actual mount point, and enter the following command in Terminal:
+            <pre><code>sudo ntfs-3g /dev/&lt;YOUR_NTFS_DEVICE&gt; &lt;YOUR_NTFS_MOUNT_POINT&gt;</code></pre>
+            For example, if your NTFS device name is <code>/dev/disk2s1</code> and the mount point is <code>/Volumes/MyNTFSVolume</code>, enter <code>sudo ntfs-3g /dev/disk2s1 /Volumes/MyNTFSVolume</code>.
+        </li>
+    </ol>
+</body>
+</html>
+

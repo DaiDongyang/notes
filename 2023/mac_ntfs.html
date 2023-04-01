@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何使用 MacPorts 安装 ntfs-3g 并挂载 NTFS 外接硬盘</title>
+</head>
+<body>
+    <h1>如何使用 MacPorts 安装 ntfs-3g 并挂载 NTFS 外接硬盘</h1>
+    <h2>安装 ntfs-3g：</h2>
+    <ol>
+        <li>安装 Xcode：从 Mac App Store 下载并安装 Xcode（如果尚未安装）。Xcode 是 Apple 提供的一套开发工具，包括编译器和开发实用程序。</li>
+        <li>安装 Xcode 命令行工具：在终端中输入以下命令以安装 Xcode 命令行工具：
+            <pre><code>xcode-select --install</code></pre>
+        </li>
+        <li>安装 MacPorts：访问 MacPorts 官方网站（https://www.macports.org/install.php），根据您的 macOS 版本下载并安装对应的 MacPorts 安装包。</li>
+        <li>更新 MacPorts：在终端中输入以下命令以更新 MacPorts 及其可用软件列表：
+            <pre><code>sudo port selfupdate</code></pre>
+        </li>
+        <li>安装 ntfs-3g：在终端中输入以下命令，使用 MacPorts 安装 ntfs-3g：
+            <pre><code>sudo port install ntfs-3g</code></pre>
+        </li>
+    </ol>
+
+    <h2>挂载 NTFS 外接硬盘：</h2>
+    <ol>
+        <li>将 NTFS 格式的外接硬盘连接到您的 Mac 电脑上。</li>
+        <li>打开终端，输入以下命令以查找已连接的 NTFS 卷的设备名称和挂载点：
+            <pre><code>diskutil list</code></pre>
+            在输出中找到您的 NTFS 卷所在的设备（例如，<code>/dev/disk2s1</code>）和挂载点（例如，<code>/Volumes/MyNTFSVolume</code>）。
+        </li>
+        <li>卸载 NTFS 卷。用实际的设备名称替换 <code>&lt;YOUR_NTFS_DEVICE&gt;</code>，然后在终端中输入以下命令：
+            <pre><code>sudo diskutil unmount /dev/&lt;YOUR_NTFS_DEVICE&gt;</code></pre>
+            例如，如果您的 NTFS 设备名称为 <code>/dev/disk2s1</code>，请输入 <code>sudo diskutil unmount /dev/disk2s1</code>。
+        </li>
+        <li>使用 ntfs-3g 重新挂载 NTFS 卷。将 <code>&lt;YOUR_NTFS_DEVICE&gt;</code> 替换为实际的设备名称，将 <code>&lt;YOUR_NTFS_MOUNT_POINT&gt;</code> 替换为实际的挂载点，然后在终端中输入以下命令：
+            <pre><code>sudo ntfs-3g /dev/&lt;YOUR_NTFS_DEVICE&gt; &lt;YOUR_NTFS_MOUNT_POINT&gt;</code></pre>
+            例如，如果您的 NTFS 设备名称为 <code>/dev/disk2s1</code>，挂载点为 <code>/Volumes/MyNTFSVolume</code>，请输入 <code>sudo ntfs-3g /dev/disk2s1 /Volumes/MyNTFSVolume</code>。
+        </li>
+    </ol>
+</body>
+</html>
+
